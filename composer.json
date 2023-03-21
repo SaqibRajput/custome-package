@@ -1,17 +1,17 @@
 {
-    "name": "saqib-rajput/custom-package",
+    "name": "ccm/leads",
     "description": "Functions and settings for all services",
     "keywords": [
-        "jbs",
+        "ccm",
         "leads"
     ],
-    "homepage": "https://packagist.org/packages/jbs/leads",
+    "homepage": "https://packagist.org/packages/ccm/leads",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
             "name": "Saqib Rajput",
-            "email": "rajput.saqib@hotmail.com",
+            "email": "saqib.rajput@arpatech.com",
             "role": "Developer"
         }
     ],
@@ -21,4 +21,3 @@
         }
     }
 }
-
