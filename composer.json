@@ -1,0 +1,24 @@
+{
+    "name": "jbs/leads",
+    "description": "Functions and settings for all services",
+    "keywords": [
+        "jbs",
+        "leads"
+    ],
+    "homepage": "https://packagist.org/packages/jbs/leads",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Saqib Rajput",
+            "email": "rajput.saqib@hotmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CCM\\Leads\\": "src"
+        }
+    }
+}
+
