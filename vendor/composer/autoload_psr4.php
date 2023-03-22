@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CCM\\Leads\\' => array($baseDir . '/src'),
+    'SR\\Leads\\' => array($baseDir . '/src'),
 );

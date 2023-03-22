@@ -1,23 +1,23 @@
 {
-    "name": "ccm/leads",
+    "name": "saqib-rajput/custom-package",
     "description": "Functions and settings for all services",
     "keywords": [
         "ccm",
         "leads"
     ],
-    "homepage": "https://packagist.org/packages/ccm/leads",
+    "homepage": "https://packagist.org/packages/saqib-rajput/custom-package",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
             "name": "Saqib Rajput",
-            "email": "saqib.rajput@arpatech.com",
-            "role": "Developer"
+            "email": "rajput.saqib@hotmail.com",
+            "role": "Solution Architect"
         }
     ],
     "autoload": {
         "psr-4": {
-            "CCM\\Leads\\": "src"
+            "SR\\Leads\\": "src"
         }
     }
 }
