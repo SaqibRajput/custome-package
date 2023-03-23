@@ -23,21 +23,14 @@
             $this->secret  = config('services.transaction.secret');
         }
 
-        /* Authenticate Controller */
-        // create new api for internal services call
-
-        public function deleteIncompleteSignup($companyId)
+        public function HelloWorld($request)
         {
-            $param = ['company_id' => $companyId];
-            return $this->callOtherService('POST', 'account/delete-incomplete-signup', $param);
+            return $this->callOtherService('GET', 'hello-world', $request);
         }
 
-        // need to fix this function
-        public function getCompaniesListByDomain($email)
+        public function paymentTransactionsHistory($userId)
         {
-            $param = ['email' => $email];
-            return $this->callOtherService('POST', 'account/companies-list-by-domain', $param);
+            return $this->callOtherService('GET', 'payment-transactions-history', $userId);
         }
-        // create new api for internal services call
 
     }

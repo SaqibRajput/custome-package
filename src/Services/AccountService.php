@@ -20,9 +20,9 @@
             $this->secret = config('services.account.secret');
         }
 
-        // public function passed()
-        // {
-        //     return $this->callOtherService('GET', '/ping');
-        // }
+        public function getInfo()
+        {
+            return $this->callOtherService('GET', '/auth/user-profile');
+        }
 
     }

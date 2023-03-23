@@ -1,13 +1,16 @@
 <?php
 
-    namespace CCM\Leads\Services;
+    namespace SR\Leads\Services;
 
+    use App\Http\Middleware\Authenticate;
     use GuzzleHttp\Client;
     use Illuminate\Http\Request;
 
     use Exception;
     use GuzzleHttp\Exception\GuzzleException;
     use GuzzleHttp\Exception\ClientException;
+
+    use App\Http\Controllers\AuthenticatateController;
 
     class Service
     {
@@ -53,7 +56,6 @@
             catch (\Exception $ex)
             {
                 // response set as null to handle same in all project.
-                $response = $ex->getTrace();
 
                 lumenLog('Exception: callOtherService : Start');
                 lumenLog('$timeOut: '.$this->timeOut);
@@ -61,53 +63,17 @@
                 lumenLog('$endPoint: '.$endPoint);
                 lumenLog('$params: '.json_encode($request));
                 lumenLog($ex->getLine().' - '.$ex->getMessage());
-                lumenLog($ex->getTrace());
+                // lumenLog($ex->getTrace());
                 lumenLog('Exception: callOtherService : End');
             }
 
             return $response;
         }
 
-        public function getServiceData($model, $where, $columns = [], $with = [], $first = false)
+        public function HeaderValues($method)
         {
-            $param = [
-                'model' => $model,
-                'columns' => $columns,
-                'where' => $where,
-                'with' => $with,
-            ];
-
-            return $this->callOtherService('POST', 'service/get-service-data', $param);
+            $auth = new AuthenticatateController();
+            return '';
         }
-
-        public function createServiceData($model, $data)
-        {
-            $param = [
-                'model' => $model,
-                'data' => $data
-            ];
-
-            return $this->callOtherService('POST', 'service/create-service-data', $param);
-        }
-
-        public function updateServiceData($model, $data, $where)
-        {
-            $param = [
-                'model' => $model,
-                'data' => $data,
-                'where' => $where
-            ];
-
-            return $this->callOtherService('POST', 'service/update-service-data', $param);
-        }
-
-        public function deleteServiceData($model, $where)
-        {
-            $param = [
-                'model' => $model,
-                'data' => $data
-            ];
-
-            return $this->callOtherService('POST', 'service/delete-service-data', $param);
-        }
+        
     }

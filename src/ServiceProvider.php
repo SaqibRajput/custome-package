@@ -3,7 +3,6 @@
 namespace SR\Leads;
 
 use Illuminate\Support\ServiceProvider as LumenServiceProvider;
-use CCM\Leads\Providers\ValidatorServiceProvider;
 use Route;
 
 class ServiceProvider extends LumenServiceProvider
@@ -14,7 +13,8 @@ class ServiceProvider extends LumenServiceProvider
      */
     public function boot()
     {
-        $this->loadTranslationsFrom($this->path.'resources/lang', 'main');
+        
+    }
 
     /**
      * Register the application services.
@@ -35,7 +35,5 @@ class ServiceProvider extends LumenServiceProvider
         Route::group(['as' => 'service-data.' ], function ($router) {
             include $this->path . 'routes/main.php';
         });
-
-        $this->app->register(ValidatorServiceProvider::class);
     }
 }

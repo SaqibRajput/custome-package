@@ -23,6 +23,11 @@
          */
         public function handle($request, Closure $next)
         {
+            if(empty($request->header('service-secret-token')))
+            {
+                return response()->json(['message' => 'Service Token is Missing.'], Response::HTTP_UNAUTHORIZED);
+            }
+
             // Explode: if you want add multiple secrets 
             $validSecrets = explode(',', env('SERVICE_SECRET'));
 
@@ -31,6 +36,6 @@
                 return $next($request);
             }
 
-            return createResponseData(Response::HTTP_UNAUTHORIZED, false, 'Invalid service token');
+            return response()->json(['message' => 'Invalid Service Token.'], Response::HTTP_UNAUTHORIZED);
         }
     }

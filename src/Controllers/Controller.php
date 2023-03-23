@@ -3,6 +3,7 @@
     namespace SR\Leads\Controllers;
 
     use Laravel\Lumen\Routing\Controller as LumenController;
+    use PhpAmqpLib\Message\AMQPMessage;
 
     class Controller extends LumenController
     {
@@ -23,5 +24,4 @@
         {
             return $data;
         }
-
     }
