@@ -9,8 +9,6 @@
 
     namespace SR\Leads\Services;
 
-    use Illuminate\Http\Request;
-
     class TransactionService extends Service
     {
         public $baseUri;
@@ -23,14 +21,29 @@
             $this->secret  = config('services.transaction.secret');
         }
 
-        public function HelloWorld($request)
+        public function bankCreate($params)
         {
-            return $this->callOtherService('GET', 'hello-world', $request);
+            return $this->callOtherService('POST', 'bank/create', $params);
+        }
+
+        public function bankGet($params)
+        {
+            return $this->callOtherService('GET', 'bank/get', $params);
+        }
+
+        public function bankStatusChange($params)
+        {
+            return $this->callOtherService('PUT', 'bank/status-change', $params);
+        }
+
+        public function bankDelete($params)
+        {
+            return $this->callOtherService('DELETE', 'bank/delete', $params);
         }
 
         public function paymentTransactionsHistory($userId)
         {
-            return $this->callOtherService('GET', 'payment-transactions-history', $userId);
+            return $this->callOtherService('GET', "payment/transactions-history/$userId");
         }
 
     }

@@ -2,13 +2,7 @@
 
     namespace SR\Leads\Services;
 
-    use App\Http\Middleware\Authenticate;
     use GuzzleHttp\Client;
-    use Illuminate\Http\Request;
-
-    use Exception;
-    use GuzzleHttp\Exception\GuzzleException;
-    use GuzzleHttp\Exception\ClientException;
 
     use App\Http\Controllers\AuthenticatateController;
 
@@ -24,7 +18,6 @@
 
         public function callOtherService($method, $requestUrl, $formParams = [], $headers = [])
         {
-
             $response = null;
 
             try
@@ -37,20 +30,24 @@
                 $endPoint = $this->baseUri.$requestUrl;
                 $headers['service-secret-token'] = $this->secret;
 
-                $request = [
+                if(!empty($_SERVER['HTTP_AUTHORIZATION']) && !isset($headers['authorization'])) {
+                    $headers['authorization'] = $_SERVER['HTTP_AUTHORIZATION'];
+                }
+
+                $requestData = [
                     'form_params' => $formParams,
                     'headers'     => $headers
                 ];
 
                 $client   = new Client($timeOutArray);
-                $curlResponse = $client->request($method, $endPoint, $request);
+                $curlResponse = $client->request($method, $endPoint, $requestData);
 
-                $content = $curlResponse->getBody()->getContents();
+                $response = $curlResponse->getBody()->getContents();
 
                 // check response is json to decode
-                $response = (isJson($content)) ? json_decode($content, true) : $content;
+                // $response = (isJson($content)) ? json_decode($content, true) : $content;
 
-                lumenLog($response);
+                lumenLog(json_decode($response, true));
 
             }
             catch (\Exception $ex)
@@ -61,7 +58,7 @@
                 lumenLog('$timeOut: '.$this->timeOut);
                 lumenLog('$method: '.$method);
                 lumenLog('$endPoint: '.$endPoint);
-                lumenLog('$params: '.json_encode($request));
+                lumenLog('$params: '.json_encode($requestData));
                 lumenLog($ex->getLine().' - '.$ex->getMessage());
                 // lumenLog($ex->getTrace());
                 lumenLog('Exception: callOtherService : End');

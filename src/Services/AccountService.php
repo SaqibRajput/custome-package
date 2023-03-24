@@ -22,7 +22,7 @@
 
         public function getInfo()
         {
-            return $this->callOtherService('GET', '/auth/user-profile');
+            return $this->callOtherService('POST', '/auth/user-profile');
         }
 
     }
